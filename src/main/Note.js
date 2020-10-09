@@ -9,7 +9,7 @@ export default function Note({ name, id, modified }) {
       <h2><Link to={`/note/${id}`}>{name}</Link></h2>
       <div className="container">
         <p>Date modified: {new Date(modified).toLocaleDateString()}</p>
-        <DeleteNote />
+        <DeleteNote id={id}/>
       </div>
     </div>
   );

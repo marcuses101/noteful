@@ -1,13 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
 import AddNote from "./AddNote";
 import NoteList from "./NoteList";
 import { Route } from "react-router-dom";
 import "./Main.css";
 import NoteView from "./NoteView"
+import DataContext from "../Context"
 
-export default function Main({ notes }) {
+export default function Main() {
+  const {notes} = useContext(DataContext);
+
+
   function handleFolderView(props) {
-    const folderNotes = notes.filter(
+    const folderNotes = notes?.filter(
       (n) => n.folderId === props.match.params.folderId
     );
     return (
