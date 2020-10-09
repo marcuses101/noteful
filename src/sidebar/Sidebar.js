@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import FolderList from "./FolderList";
 import NoteSidebar from "./NoteSidebar";
 import { Route } from "react-router-dom";
-import DataContext from "../Context";
 
 export default function Sidebar() {
   return (

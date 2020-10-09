@@ -4,7 +4,6 @@ import Header from "./Header";
 import Main from "./main/Main";
 import Sidebar from "./sidebar/Sidebar";
 import DataContext from "./Context";
-import {useHistory} from "react-router-dom"
 
 const baseURL = "http://localhost:9090";
 

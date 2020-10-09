@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { Redirect } from "react-router-dom";
+import React, { useContext } from "react";
 import DataContext from "../Context";
 const url = "http://localhost:9090/notes/";
 
@@ -15,8 +14,7 @@ export default function DeleteNote({ id }) {
     if (response.ok) {
       deleteNote(id);
     }
-    const data = await response.json;
-    console.log(data);
+
   }
   return (
     <button className="DeleteNote" onClick={handleOnClick}>
