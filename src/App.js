@@ -23,10 +23,13 @@ function App() {
     });
   }
 
-  const contextValue = { folders, notes, deleteNote };
+  function addFolder(folderObj) {
+    setFolders(currentFolders=>[...currentFolders, folderObj])
+  }
+
+  const contextValue = { folders, notes, deleteNote, addFolder};
 
   useEffect(() => {
-    console.log("fetching data");
     getData(baseURL + "/folders", setFolders);
     getData(baseURL + "/notes", setNotes);
   }, []);

@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import AddNote from "./AddNote";
+import AddNoteButton from "./AddNoteButton";
 import NoteList from "./NoteList";
 import { Route } from "react-router-dom";
 import "./Main.css";
@@ -17,7 +17,7 @@ export default function Main() {
     return (
       <>
         <NoteList notes={folderNotes} />
-        <AddNote />
+        <AddNoteButton />
       </>
     );
   }
@@ -26,7 +26,7 @@ export default function Main() {
     return (
       <>
         <NoteList notes={notes} />
-        <AddNote />
+        <AddNoteButton />
       </>
     );
   }
@@ -38,7 +38,6 @@ export default function Main() {
 
   return (
     <main className="Main">
-      {/* <NoteList notes={notes}/> */}
       <Route exact path="/" render={handleMainView} />
       <Route exact path="/folder/:folderId" render={handleFolderView} />
       <Route exact path="/note/:noteId" render={handleContentView} />

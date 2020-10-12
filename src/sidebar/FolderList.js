@@ -1,11 +1,13 @@
-import React, {useContext} from "react";
-import {useParams} from "react-router-dom"
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import Folder from "./Folder";
-import AddFolder from "./AddFolder";
-import DataContext from "../Context"
+import AddFolderButton from "./AddFolderButton";
+import DataContext from "../Context";
+import AddFolderForm from "./AddFolderForm";
 
 export default function FolderList() {
-  const {folders} = useContext(DataContext)
+  const [showForm, setShowForm] = useState(false);
+  const { folders } = useContext(DataContext);
   const match = useParams()?.folderId;
   const foldersList = folders?.map((folder) => (
     <Folder {...folder} key={folder.id} active={folder.id === match} />
@@ -14,7 +16,11 @@ export default function FolderList() {
   return (
     <>
       <div className="FolderList">{foldersList}</div>
-      <AddFolder/>
+      {showForm ? (
+        <AddFolderForm onCancel={() => setShowForm(false)} />
+      ) : (
+        <AddFolderButton onClick={() => setShowForm(true)} />
+      )}
     </>
   );
 }
