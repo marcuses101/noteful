@@ -1,5 +1,6 @@
 import React from "react";
 import DeleteNote from "./DeleteNote";
+import PropTypes from "prop-types"
 import "./Note.css";
 import { Link, useRouteMatch } from "react-router-dom";
 
@@ -15,4 +16,10 @@ export default function Note({ name, id, modified }) {
       </div>
     </div>
   );
+}
+
+Note.propTypes = {
+  name: PropTypes.string,
+  id: PropTypes.string,
+  modified: PropTypes.instanceOf(Date)
 }

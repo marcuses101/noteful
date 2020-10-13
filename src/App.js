@@ -11,9 +11,10 @@ function App() {
   const [folders, setFolders] = useState([]);
   const [notes, setNotes] = useState([]);
 
-  async function getData(url, setStateFunction) {
+  async function getData(url, setStateFunction, forEach) {
     const response = await fetch(url);
     const data = await response.json();
+    if (forEach) data.forEach(forEach)
     setStateFunction(data);
   }
 
@@ -23,15 +24,20 @@ function App() {
     });
   }
 
+  function addNote(noteObj){
+    setNotes(currentNotes=>[...currentNotes, noteObj])
+  }
+
   function addFolder(folderObj) {
     setFolders(currentFolders=>[...currentFolders, folderObj])
   }
 
-  const contextValue = { folders, notes, deleteNote, addFolder};
+  const contextValue = { folders, notes, deleteNote, addFolder, addNote};
 
   useEffect(() => {
     getData(baseURL + "/folders", setFolders);
-    getData(baseURL + "/notes", setNotes);
+    // convert note modified property into Date obj
+    getData(baseURL + "/notes", setNotes, (note)=>note.modified = new Date(note.modified));
   }, []);
 
   return (

@@ -1,5 +1,6 @@
 import React from "react"
 import "./AddFolderButton.css"
+import PropTypes from 'prop-types'
 
  export default function AddFolder({onClick}){
    return (
@@ -8,3 +9,7 @@ import "./AddFolderButton.css"
      </button>
    )
  }
+
+AddFolder.propTypes = {
+  onClick: PropTypes.func
+}

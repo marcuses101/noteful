@@ -1,6 +1,7 @@
 import React from "react"
 import Note from "./Note"
 import {Redirect} from "react-router-dom"
+import PropTypes from "prop-types"
 
  export default function NoteView(props){
    return (
@@ -10,4 +11,8 @@ import {Redirect} from "react-router-dom"
           <p style={{margin: 10}}>{props.content}</p>
      </div>
    )
+ }
+
+ NoteView.propTypes = {
+   content: PropTypes.string
  }

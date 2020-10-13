@@ -1,14 +1,15 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import AddNoteButton from "./AddNoteButton";
 import NoteList from "./NoteList";
 import { Route } from "react-router-dom";
 import "./Main.css";
-import NoteView from "./NoteView"
-import DataContext from "../Context"
+import NoteView from "./NoteView";
+import AddNoteForm from "./AddNoteForm";
+import DataContext from "../Context";
+import Error from "../Error";
 
 export default function Main() {
-  const {notes} = useContext(DataContext);
-
+  const { notes } = useContext(DataContext);
 
   function handleFolderView(props) {
     const folderNotes = notes?.filter(
@@ -31,16 +32,19 @@ export default function Main() {
     );
   }
 
-  function handleContentView(props){
-    const note = notes.find(n=>n.id === props.match.params.noteId);
-    return <NoteView {...note}/>
+  function handleContentView(props) {
+    const note = notes.find((n) => n.id === props.match.params.noteId);
+    return <NoteView {...note} />;
   }
 
   return (
     <main className="Main">
-      <Route exact path="/" render={handleMainView} />
-      <Route exact path="/folder/:folderId" render={handleFolderView} />
-      <Route exact path="/note/:noteId" render={handleContentView} />
+      <Error>
+        <Route exact path="/" render={handleMainView} />
+        <Route exact path="/folder/:folderId" render={handleFolderView} />
+        <Route exact path="/note/:noteId" render={handleContentView} />
+        <Route exact path="/add-note" component={AddNoteForm} />
+      </Error>
     </main>
   );
 }

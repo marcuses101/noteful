@@ -1,12 +1,11 @@
 .AddFolderForm {
-  box-sizing: border-box;
   width: 100%;
   text-align: center;
   padding: 5px;
   border-bottom: 2px solid black;
 }
+
 .AddFolderForm input[type="text"] {
-  box-sizing: border-box;
   width: 100%;
 }
 .AddFolderForm input[type="button"],
