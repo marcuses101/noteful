@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import AddNoteButton from "./AddNoteButton";
 import NoteList from "./NoteList";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./Main.css";
 import NoteView from "./NoteView";
 import AddNoteForm from "./AddNoteForm";
@@ -40,10 +40,12 @@ export default function Main() {
   return (
     <main className="Main">
       <Error>
-        <Route exact path="/" render={handleMainView} />
+      <Switch>
         <Route exact path="/folder/:folderId" render={handleFolderView} />
         <Route exact path="/note/:noteId" render={handleContentView} />
         <Route exact path="/add-note" component={AddNoteForm} />
+        <Route path="/" render={handleMainView} />
+      </Switch>
       </Error>
     </main>
   );
