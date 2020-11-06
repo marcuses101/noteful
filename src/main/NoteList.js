@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
    const notesList = notes?.map(note=><Note {...note} key={note.id}/>)
    return (
      <div className="NoteList">
-        {notesList.length > 0?notesList:<h2>No Notes</h2>}
+        {notesList?.length > 0?notesList:<h2>No Notes</h2>}
      </div>
    )
  }
