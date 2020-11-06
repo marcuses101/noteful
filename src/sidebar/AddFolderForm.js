@@ -1,13 +1,17 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useEffect } from "react";
 import DataContext from "../Context";
 import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types"
 import "./AddFolderForm.css";
-const url = "http://localhost:9090/folders/";
+const url = "http://localhost:8000/api/folder";
 
 export default function AddFolderForm({ onCancel }) {
   const folderNameInput = useRef(null);
   const { addFolder } = useContext(DataContext);
+
+  useEffect(()=>{
+    folderNameInput.current.focus();
+  },[])
 
   async function createNewFolder(event) {
     event.preventDefault();
@@ -19,7 +23,6 @@ export default function AddFolderForm({ onCancel }) {
         },
         body: JSON.stringify({
           name: folderNameInput.current.value,
-          id: uuidv4(),
         }),
       });
       if (!response.ok) {
@@ -43,6 +46,7 @@ export default function AddFolderForm({ onCancel }) {
         name="folderName"
         ref={folderNameInput}
         required
+        aria-required="true"
       />
       <input type="submit" value="create" />
       <input type="button" value="cancel" onClick={onCancel} />

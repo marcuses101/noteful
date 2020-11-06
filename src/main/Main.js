@@ -13,12 +13,13 @@ export default function Main() {
 
   function handleFolderView(props) {
     const folderNotes = notes?.filter(
-      (n) => n.folderId === props.match.params.folderId
+      (n) => n.folder_id === parseInt(props.match.params.folder_id)
     );
     return (
       <>
-        <NoteList notes={folderNotes} />
+        <h1>Folder View</h1>
         <AddNoteButton />
+        <NoteList notes={folderNotes} />
       </>
     );
   }
@@ -26,26 +27,32 @@ export default function Main() {
   function handleMainView() {
     return (
       <>
-        <NoteList notes={notes} />
+        <h1>Main View</h1>
         <AddNoteButton />
+        <NoteList notes={notes} />
       </>
     );
   }
 
   function handleContentView(props) {
-    const note = notes.find((n) => n.id === props.match.params.noteId);
-    return <NoteView {...note} />;
+    const note = notes.find((n) => n.id === parseInt(props.match.params.note_id));
+    return (
+      <>
+        <h1>Content View</h1>
+        <NoteView {...note} />
+      </>
+    );
   }
 
   return (
     <main className="Main">
       <Error>
-      <Switch>
-        <Route exact path="/folder/:folderId" render={handleFolderView} />
-        <Route exact path="/note/:noteId" render={handleContentView} />
-        <Route exact path="/add-note" component={AddNoteForm} />
-        <Route path="/" render={handleMainView} />
-      </Switch>
+        <Switch>
+          <Route exact path="/folder/:folder_id" render={handleFolderView} />
+          <Route exact path="/note/:note_id" render={handleContentView} />
+          <Route exact path="/add-note" component={AddNoteForm} />
+          <Route path="/" render={handleMainView} />
+        </Switch>
       </Error>
     </main>
   );

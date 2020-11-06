@@ -5,7 +5,7 @@ import Main from "./main/Main";
 import Sidebar from "./sidebar/Sidebar";
 import DataContext from "./Context";
 
-const baseURL = "http://localhost:9090";
+const baseURL = "http://localhost:8000";
 
 function App() {
   const [folders, setFolders] = useState([]);
@@ -35,9 +35,9 @@ function App() {
   const contextValue = { folders, notes, deleteNote, addFolder, addNote};
 
   useEffect(() => {
-    getData(baseURL + "/folders", setFolders);
+    getData(baseURL + "/api/folder", setFolders);
     // convert note modified property into Date obj
-    getData(baseURL + "/notes", setNotes, (note)=>note.modified = new Date(note.modified));
+    getData(baseURL + "/api/note", setNotes, (note)=>note.modified = new Date(note.modified));
   }, []);
 
   return (

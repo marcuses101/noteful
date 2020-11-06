@@ -6,6 +6,8 @@ html {
 }
 *, *:before, *:after {
   box-sizing: inherit;
+  outline-width: 3px;
+  outline-color:green;
 }
 
 body {

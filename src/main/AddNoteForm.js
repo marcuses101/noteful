@@ -1,27 +1,32 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import React, { useContext, useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import DataContext from "../Context";
-import { v4 as uuidv4 } from "uuid";
 import "./AddNoteForm.css";
-const url = "http://localhost:9090/notes/";
+const url = "http://localhost:8000/api/note";
 
 export default function AddNoteForm() {
   const { folders, addNote } = useContext(DataContext);
   const [name, setName] = useState({});
   const [folderId, setFolderId] = useState({});
   const [content, setContent] = useState({});
-  const [redirect, setRedirect] = useState(null);
-  const { goBack } = useHistory();
+  const { goBack, push } = useHistory();
+  const titleInput = useRef(null)
 
-  const folderOptions = folders.map((folder, i) => (
+  const folderOptions = folders.map((folder) => (
     <option key={folder.id} value={folder.id}>
       {folder.name}
     </option>
   ));
 
+  // set folderId state on mount to default
   useEffect(() => {
     setFolderId({ value: folders[0]?.id });
   }, [folders]);
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+    titleInput.current.focus();
+  },[])
 
   function handleChange(event) {
     const setFunctions = {
@@ -44,23 +49,19 @@ export default function AddNoteForm() {
         },
         body: JSON.stringify({
           name: name.value,
-          id: uuidv4(),
-          folderId: folderId.value,
+          folder_id: folderId.value,
           content: content.value,
           modified: new Date(),
         }),
       });
       if (!response.ok) throw new Error("Post failed" + response.status);
       const data = await response.json();
-      console.log(data);
       addNote(data);
-      setRedirect(data.id);
+      push('/')
     } catch (e) {
       console.log(e);
     }
   }
-  console.log(redirect);
-  if (redirect) return <Redirect to={`/note/${redirect}`} />;
   return (
     <div className="AddNoteForm">
       <h2>Add a note!</h2>
@@ -72,10 +73,12 @@ export default function AddNoteForm() {
           id="noteName"
           onChange={handleChange}
           required
+          aria-required="true"
+          ref={titleInput}
         />
         <br />
         <label htmlFor="folderSelect">Folder: </label>
-        <select name="folderSelect" id="folderSelect" onChange={handleChange}>
+        <select name="folderSelect" id="folderSelect" onBlur={handleChange}>
           {folderOptions}
         </select>
         <br />
