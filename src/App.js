@@ -5,7 +5,7 @@ import Main from "./main/Main";
 import Sidebar from "./sidebar/Sidebar";
 import DataContext from "./Context";
 
-const baseURL = "http://localhost:8000";
+const baseURL = "https://fast-falls-13967.herokuapp.com";
 
 function App() {
   const [folders, setFolders] = useState([]);

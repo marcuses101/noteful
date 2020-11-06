@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
    const notesList = notes?.map(note=><Note {...note} key={note.id}/>)
    return (
      <div className="NoteList">
-        {notesList}
+        {notesList.length > 0?notesList:<h2>No Notes</h2>}
      </div>
    )
  }
@@ -14,8 +14,7 @@ import PropTypes from "prop-types"
  NoteList.propTypes = {
    notes: PropTypes.arrayOf(PropTypes.shape({
      name: PropTypes.string,
-     id: PropTypes.string,
-     folderId: PropTypes.string,
-     modified: PropTypes.instanceOf(Date)
+     id: PropTypes.number,
+     folderId: PropTypes.string
    }))
  }

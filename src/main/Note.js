@@ -19,6 +19,5 @@ export default function Note({ name, id, modified }) {
 
 Note.propTypes = {
   name: PropTypes.string,
-  id: PropTypes.string,
-  modified: PropTypes.instanceOf(Date)
+  id: PropTypes.number,
 }

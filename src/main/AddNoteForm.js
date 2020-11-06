@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import DataContext from "../Context";
 import "./AddNoteForm.css";
-const url = "http://localhost:8000/api/note";
+const url = "https://fast-falls-13967.herokuapp.com/api/note";
 
 export default function AddNoteForm() {
   const { folders, addNote } = useContext(DataContext);

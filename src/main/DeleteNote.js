@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import DataContext from "../Context";
-const url = "http://localhost:8000/api/note/";
+const url = "https://fast-falls-13967.herokuapp.com/api/note/";
 
 export default function DeleteNote({ id }) {
   const { deleteNote } = useContext(DataContext);

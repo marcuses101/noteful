@@ -13,6 +13,6 @@ export default function Folder({ name, id, active }) {
 
 Folder.propTypes ={
   name: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.number,
   active: PropTypes.bool
 }

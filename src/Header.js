@@ -3,6 +3,6 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return <header className="Header">
-    <Link to="/"><h1>Noteful</h1></Link>
+    <h1><Link to="/">Noteful</Link></h1>
   </header>;
 }

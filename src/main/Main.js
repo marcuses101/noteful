@@ -17,7 +17,6 @@ export default function Main() {
     );
     return (
       <>
-        <h1>Folder View</h1>
         <AddNoteButton />
         <NoteList notes={folderNotes} />
       </>
@@ -27,7 +26,6 @@ export default function Main() {
   function handleMainView() {
     return (
       <>
-        <h1>Main View</h1>
         <AddNoteButton />
         <NoteList notes={notes} />
       </>
@@ -38,7 +36,6 @@ export default function Main() {
     const note = notes.find((n) => n.id === parseInt(props.match.params.note_id));
     return (
       <>
-        <h1>Content View</h1>
         <NoteView {...note} />
       </>
     );
